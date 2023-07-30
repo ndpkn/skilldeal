@@ -10,17 +10,17 @@ block header
     body {
       font-size: 22px;
     }
-    
+
     main {
       padding-bottom: 40px;
 
       word-wrap: break-word;
     }
-    
+
     ul ul {
       margin-bottom: 20px;
     }
-    
+
     em {
       color: #636363;
       font-size: 16px;
@@ -86,22 +86,22 @@ block header
     h3 {
       font-size: 40px;
     }
-    
+
     code {
       display: block;
       max-width: 100%;
       padding: 20px 30px;
-      overflow-x: auto;      
+      overflow-x: auto;
       font-size: 18px;
 
       background-color: #eeeeee;
     }
-    
+
     b, strong {
       color: #da0414;
       font-weight: 500;
     }
-    
+
     .button {
       display: block;
       width: 100%;
@@ -109,10 +109,10 @@ block header
 
       color: #fff;
       font-size: 20px;
-      
+
       background-color: #da0414;
       border: none;
-      
+
       transition: all 0.3s ease;
     }
 
@@ -145,9 +145,9 @@ block header
 
     @media (max-width: 780px) {
       .container {
-        padding: 0 20px;  
+        padding: 0 20px;
       }
-      
+
       .header__logo {
         display: none;
       }
@@ -164,7 +164,7 @@ block content
     .container.header__container
       .header__promo
         h1.header__title Gulp сборка для продуктивной верстки
-        em ver. 0.1.0
+        em ver. 0.1.1
       img.header__logo(src="/img/build-logo.svg", width="512", height="512", alt="Логотип сборки", loading="lazy")
 
   section.content
@@ -181,36 +181,36 @@ block content
           ul
             li Отложенная загрузка
             li Критические стили
-        
+
         li Базовая SEO оптимизация
           ul
             li Open Graph / Twitter Cards
             li JSON-LD микроразметка
             li Google Analytics / Yandex Metrika
-        
+
         li Pug шаблонизатор
           ul
             li Улучшенный фильтр markdown-it
             li Возможность добавлять свои фильтры на примере фильтра special-chars
             li Работа с json данными
-            
+
         li SCSS препроцессор
           ul
-            
+
         li Webpack сборщик
           ul
             li Возможность использовать новый формат JS по максимуму
             li Оптимизация кода через Babel
-            
+
         li SVG спрайты
           ul
             li Цветные
             li Черно-белые
-        
+
         li Оптимизированные изображения
           ul
             li Генерация webp и avif форматов
-            
+
         li Настроенные линтеры
           ul
             li Stylelint
@@ -218,9 +218,9 @@ block content
             li ES-Lint
             li Prettier
             li Editorconfig
-            
+
         li Автоматическая генерация favicons
-      
+
 
       h2 Инструкция по установке
       h3 Шаг 1
@@ -229,14 +229,14 @@ block content
         ```bash
         git clone git@github.com:eliofery/gulp-template.git
         ```
-      
+
       h3 Шаг 2
       p Установить зависимости.
       :markdown-it
         ```bash
         npm i
         ```
-      
+
       h3 Шаг 3
       p #[b Опционально]: если хотите поддерживать единообразие в стиле написания кода установите #[b linter].
       :markdown-it
@@ -246,7 +246,7 @@ block content
         ```
       p Так же необходимо будет установить расширения для вашего текстового редактора или IDE.
       p #[b Например для VSCode это будут]: puglint, stylelint, ESLint, editorconfig, prettier.
-        
+
       h3 Шаг 4
       p Загрузите свою svg favicon в каталог #[b ./src/assets/favicons] с именем #[b icon.svg].
       p Favicon должен быть размером не менее #[b 512x512], например.
@@ -255,7 +255,7 @@ block content
         <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512">...</svg>
         ```
       p При сборке проекта на основе #[b icon.svg] будут созданы другие необходимые favicons.
-      
+
       h3 Шаг 5
       p Внести изменения в файл #[b ./gulp/config.js], в разделе #[b replacement], согласно наименованию вашего проекта. Изменять следует только свойство #[b new], например:
       :markdown-it
@@ -294,10 +294,10 @@ block content
         ```bash
         npm run prepare
         ```
-      
+
       h3 Шаг 6
       p Теперь вы готовы приступить к верстке своего проекта.
-      
+
       h4.
         Скомпилирует проект и запустит Live Server в режиме разработки.
         Файлы не будут минифицированы, а картинки оптимизированы.
@@ -305,7 +305,7 @@ block content
         ```bash        
         npm run dev
         ```
-        
+
       h4.
         Скомпилирует проект в режиме продакшн.
         Файлы будут минифицированы, а картинки оптимизированы.
@@ -321,35 +321,35 @@ block content
         ```bash       
         npm run proxy
         ```
-        
+
       hr
-        
+
       p Если при сборке возникнет ошибка: #[b DSO support routines:DLFCN_LOAD:could not load the shared library:dso_dlfcn.c:185:filename(libproviders.so)].
-    
+
       p Обнулите значение переменной #[b OPENSSL_CONF]:
       :markdown-it
         ```bash
         export OPENSSL_CONF=/dev/null
         ```
-      
-      
+
+
       h2 Примеры верстки с Pug
       h3 Json данные в Pug
       p Хранятся в каталоге #[b ./src/pug/data]. Например файл #[b mainNav.json].
       p Чтобы получить доступ к его значениям, нужно обратиться к глобальной переменной #[b jsonData], которая отвечает за вывод данных из #[b json] файлов, хранящихся в каталоге #[b data].
-      
+
       :markdown-it
         ```pug
         jsonData.имя_файла
         ```
-      
+
       p Получение содержимого из файла #[b mainNav.json] будет выглядеть следующим образом:
-      
+
       :markdown-it
         ```pug
         jsonData.mainNav
         ```
-      
+
       h3 Вывода навигации
       p Рассмотрим пример вывода навигации на основе #[b json] данных из файла #[b mainNav.json].
       p Ознакомиться с содержимым файла #[b mainNav.json] можно по пути #[b ./src/pug/data/mainNav.json].
@@ -366,7 +366,7 @@ block content
                 li #{ link.title }
                 li #{ link.link }
         ```
-            
+
       h3 Вывод code
       p Рассмотрим пример вывода разметки в теге code.
       pre
@@ -386,7 +386,7 @@ block content
                 Тут разметка которая экранируется
               </div>
               ```
-            
+
       h3 Markdown разметка
       p Рассмотрим пример вывода Markdown разметки.
       pre
@@ -404,6 +404,5 @@ block content
               var codeBlocks;
               ```
 
-  
   .container
     button.button Вернуться наверх

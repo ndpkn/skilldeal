@@ -8,7 +8,7 @@
 import { src, dest, watch, series } from 'gulp' // gulp плагин
 import gulpif from 'gulp-if' // вызывает функции по условию
 import newer from 'gulp-newer' // пропускает старые файлы
-//import flatten from 'gulp-flatten' // настраивает исходную структуру каталогов
+// import flatten from 'gulp-flatten' // настраивает исходную структуру каталогов
 import imagemin, { gifsicle, mozjpeg, optipng, svgo } from 'gulp-imagemin' // оптимизирует изображения
 import pngQuant from 'imagemin-pngquant' // оптимизирует png изображения
 import webp from 'gulp-webp' // создает webp файлы

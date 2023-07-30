@@ -103,10 +103,11 @@ Favicon должен быть размером не менее **512x512**, на
 
 ### Шаг 5
 
-Внести изменения в файл **./gulp/config.js**, в разделе **replacement**, согласно наименованию вашего проекта. Изменять следует только свойство **new**, например:
+Внести изменения в файл **./gulp/config.js**, в разделе **replacement**, согласно наименованию вашего проекта.
+Изменять следует только свойство **new**, например:
 
 ```js
-const config = { 
+const config = {
   //...
   replacement: {
     env: { old: 'dev', new: 'prod' },
@@ -125,7 +126,7 @@ const config = {
 **Gulp** будет искать значения прописанные в параметрах **old** и менять их на значения параметров **new**, в файлах:
 
 ```js
-const config = { 
+const config = {
   //...
   files: [
     `${srcPath}}/assets/manifest.json`,
@@ -259,16 +260,3 @@ include:markdown-it ../markdown/docs.md
   var codeBlocks;
   \```
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-

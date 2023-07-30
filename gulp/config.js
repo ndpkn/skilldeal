@@ -17,14 +17,44 @@ const config = {
 
   // Замена текста в файлах указанных выше, укажите в параметре new свое значение
   replacement: {
-    env: { old: 'dev', new: 'dev' }, // dev или prod, при значении prod на странице отобразятся скрипты Google Analitics и Yandex Metrika
-    url: { old: 'http://localhost:3000', new: 'http://localhost:3000' }, // ссылка на сайт, используется для seo
-    title: { old: 'Название проекта', new: 'Название проекта' },
-    desc: { old: 'Описание проекта', new: 'Описание проекта' },
-    version: { old: '0.1.0', new: '0.1.0' }, // версия проекта
-    color: { old: '#000', new: '#000' }, // акцентный цвет проекта
-    google: { old: 'GTM-XXXXXX', new: 'GTM-XXXXXX' }, // google analytics
-    yandex: { old: 'XXXXXX', new: 'XXXXXX' }, // yandex metrika
+    // dev или prod режим, при значении prod на странице отобразятся скрипты Google Analitics и Yandex Metrika
+    env: {
+      old: 'dev',
+      new: 'dev',
+    },
+    // ссылка на сайт, используется для seo
+    url: {
+      old: 'http://localhost:3000',
+      new: 'http://localhost:3000',
+    },
+    title: {
+      old: 'Название проекта',
+      new: 'Название проекта',
+    },
+    desc: {
+      old: 'Описание проекта',
+      new: 'Описание проекта',
+    },
+    // версия проекта, используется для сброса кеша стилей и скриптов
+    version: {
+      old: '0.1.1',
+      new: '0.1.1',
+    },
+    // акцентный цвет проекта
+    color: {
+      old: '#000',
+      new: '#000',
+    },
+    // google analytics
+    google: {
+      old: 'GTM-XXXXXX',
+      new: 'GTM-XXXXXX',
+    },
+    // yandex metrika
+    yandex: {
+      old: 'XXXXXX',
+      new: 'XXXXXX',
+    },
   },
 
   proxy: 'http://localhost', // url виртуального хоста

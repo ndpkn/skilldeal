@@ -11,30 +11,22 @@ module.exports = {
     indent: ['off', 2],
     'import/no-extraneous-dependencies': [
       'off',
-      {
-        devDependencies: ['gulpfile.babel.js', 'gulp/**/*'],
-      },
+      { devDependencies: ['gulpfile.babel.js', 'gulp/**/*'] },
     ],
     'import/no-import-module-exports': [
       'off',
-      {
-        exceptions: ['gulpfile.babel.js', 'gulp/**/*'],
-      },
+      { exceptions: ['gulpfile.babel.js', 'gulp/**/*'] },
     ],
     'import/resolver': [
       'off',
-      {
-        exceptions: ['gulpfile.babel.js', 'gulp/**/*'],
-      },
+      { exceptions: ['gulpfile.babel.js', 'gulp/**/*'] },
     ],
     'implicit-arrow-linebreak': [
       'off',
-      {
-        exceptions: ['gulpfile.babel.js', 'gulp/**/*'],
-      },
+      { exceptions: ['gulpfile.babel.js', 'gulp/**/*'] },
     ],
     'no-var': 'error',
-    'object-curly-newline': 'error',
+    'object-curly-newline': 'off',
     'max-len': 'off',
     'no-multi-assign': 'off',
     'no-unused-vars': 'error',
