@@ -1,6 +1,6 @@
 {
   "name": "gulp-template",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Gulp сборка для продуктивной верстки",
   "keywords": [
     "gulp",
@@ -10,9 +10,9 @@
     "svg-sprite"
   ],
   "scripts": {
-    "lint": "husky install",
+    "prepare": "husky install",
     "replaces": "gulp replaces",
-    "prepare": "gulp prepare",
+    "preperate": "gulp prepare",
     "build": "gulp build --prod",
     "dev": "gulp watch",
     "proxy": "gulp proxy"
@@ -23,12 +23,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Eliofery/gulp-template.git"
+    "url": "git+https://github.com/eliofery/gulp-template.git"
   },
   "bugs": {
-    "url": "https://github.com/Eliofery/gulp-template/issues"
+    "url": "https://github.com/eliofery/gulp-template/issues"
   },
-  "homepage": "https://github.com/Eliofery/gulp-template#readme",
+  "homepage": "https://github.com/eliofery/gulp-template#readme",
   "author": "Sergio Eliofery",
   "license": "ISC",
   "devDependencies": {
