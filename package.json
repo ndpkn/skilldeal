@@ -1,6 +1,6 @@
 {
   "name": "gulp-template",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Gulp сборка для продуктивной верстки",
   "keywords": [
     "gulp",
@@ -11,6 +11,7 @@
   ],
   "scripts": {
     "prepare": "husky install",
+    "precommit": "lint-staged",
     "replaces": "gulp replaces",
     "preperate": "gulp prepare",
     "build": "gulp build --prod",
