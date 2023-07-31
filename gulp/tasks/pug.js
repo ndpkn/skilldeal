@@ -111,7 +111,11 @@ export const pugBuild = () => {
 // Слежение за изменением файлов
 export const pugWatch = () => {
   watch(
-    [`${config.src.pug.root}/**/*.pug`, `${config.src.pug.root}/data/**/*`],
+    [
+      `${config.src.pug.root}/**/*.pug`,
+      `${config.src.pug.root}/data/**/*`,
+      `${config.src.assets.icons.root}/sprite-*.svg`,
+    ],
     pugBuild,
   )
 }

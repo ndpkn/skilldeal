@@ -92,7 +92,7 @@ export const imagesBuild = series(imageOptim, toWebp, toAvif)
 // Слежение за изменением файлов
 export const imagesWatch = () =>
   watch(
-    `${config.src.assets.images}/**/*`,
+    [`${config.src.assets.images}/**/*`, `${config.src.assets.favicons}/**/*`],
     { ignoreInitial: false },
     imagesBuild,
   )
