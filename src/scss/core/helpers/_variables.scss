@@ -4,15 +4,15 @@ $white: #fff;
 $accent: #cbcbcb;
 
 :root {
-  --theme-text: #{hextorgb($black)};
-  --theme-bg: #{hextorgb($white)};
+  --theme-color-black: #{hextorgb($black)};
+  --theme-color-white: #{hextorgb($white)};
 
   --theme-color-accent: #{hextorgb($accent)};
 }
 
 @mixin dark-mode {
-  --theme-text: #{hextorgb($white)};
-  --theme-bg: #{hextorgb($black)};
+  --theme-color-black: #{hextorgb($white)};
+  --theme-color-white: #{hextorgb($black)};
 
   --theme-color-accent: #{hextorgb($accent)};
 }

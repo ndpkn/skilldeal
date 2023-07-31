@@ -3,14 +3,14 @@
   margin: 0;
   padding: 20px;
 
-  color: rgb(var(--theme-text));
+  color: rgb(var(--theme-color-black));
   text-align: center;
 
   background-color: rgba(var(--theme-color-accent), 1);
 }
 
 .browser-upgrade a {
-  color: rgb(var(--theme-text));
+  color: rgb(var(--theme-color-black));
   font-weight: 500;
 
   &:hover,

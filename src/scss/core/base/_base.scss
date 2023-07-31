@@ -21,7 +21,7 @@ body {
   min-width: $min-screen;
   margin: 0;
 
-  color: rgb(var(--theme-text));
+  color: rgb(var(--theme-color-black));
   font-size: $fz;
   font-family: $font-primary;
   line-height: $lh;
@@ -29,7 +29,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  background-color: rgb(var(--theme-bg));
+  background-color: rgb(var(--theme-color-white));
 }
 
 img {
