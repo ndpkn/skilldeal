@@ -5,12 +5,14 @@
  */
 
 // Сторонние библиотеки
-import { dest, src, watch } from 'gulp' // gulp плагин
+import { dest, series, src, watch } from 'gulp' // gulp плагин
 import pug from 'gulp-pug' // шаблонизатор pug
 import plumber from 'gulp-plumber' // перехватывает ошибки
 import notify from 'gulp-notify' // уведомляет об ошибках
 import pugIncludeGlob from 'pug-include-glob' // позволяет использовать /**/*.pug конструкцию
 import fs from 'fs' // чтение файлов
+import gulpif from 'gulp-if' // вызывает функции по условию
+import replace from 'gulp-replace' // замена текста внутри файла
 
 // Конфиги
 import config from '../config'
@@ -26,7 +28,7 @@ const jstminify = require('jstransformer')(require('jstransformer-clean-css')) /
 // Далее значение этого объекта в pug файле можно будет получить примерно так:
 // #{jsonData.nav.home.link}
 const getData = () => {
-  const dir = `${config.src.pug.root}/data` // здесь ищем json файлы
+  const dir = config.src.pug.data // здесь ищем json файлы
   const files = fs.readdirSync(dir) // получаем список всех файлов в каталоге
   const data = {} // хранит данные файлов
 
@@ -43,8 +45,8 @@ const getData = () => {
   return data
 }
 
-// Сборка таска
-export const pugBuild = () => {
+// Pug в Html
+export const pugToHtml = () => {
   const jsonData = getData() // получаем данные
 
   return src([
@@ -108,6 +110,19 @@ export const pugBuild = () => {
     .pipe(browserSync.stream()) // обновление страницы в браузере
 }
 
+// Определение окружения
+const envSet = () => {
+  const pattern = /(- var env = ")([prod|dev]+)(";)/g
+
+  return src(`${config.src.pug.data}/config.pug`)
+    .pipe(gulpif(config.isDev, replace(pattern, '$1dev$3')))
+    .pipe(gulpif(config.isProd, replace(pattern, '$1prod$3')))
+    .pipe(dest(file => file.base))
+}
+
+// Сборка таска
+export const pugBuild = series(envSet, pugToHtml)
+
 // Слежение за изменением файлов
 export const pugWatch = () => {
   watch(
@@ -116,6 +131,6 @@ export const pugWatch = () => {
       `${config.src.pug.root}/data/**/*`,
       `${config.src.assets.icons.root}/sprite-*.svg`,
     ],
-    pugBuild,
+    pugToHtml,
   )
 }

@@ -17,15 +17,15 @@ const config = {
 
   // Замена текста в файлах указанных выше, укажите в параметре new свое значение
   replacement: {
-    // dev или prod режим, при значении prod на странице отобразятся скрипты Google Analitics и Yandex Metrika
-    env: {
-      old: 'dev',
-      new: 'dev',
-    },
     // ссылка на сайт, используется для seo
     url: {
       old: 'http://localhost:3000',
       new: 'http://localhost:3000',
+    },
+    // ссылка используется в теге <base>
+    baseUrl: {
+      old: '/gulp-template/',
+      new: '/',
     },
     title: {
       old: 'Название проекта',
@@ -37,8 +37,8 @@ const config = {
     },
     // версия проекта, используется для сброса кеша стилей и скриптов
     version: {
-      old: '0.1.6',
-      new: '0.1.6',
+      old: '0.1.7',
+      new: '0.1.7',
     },
     // акцентный цвет проекта
     color: {
@@ -67,6 +67,7 @@ const config = {
     // Шаблонизатор pug
     pug: {
       root: `${srcPath}/pug`, // корневой каталог pug
+      data: `${srcPath}/pug/data`, // конфиги и json данные
       pages: `${srcPath}/pug/pages`, // pug страницы для компиляции в html
     },
 
