@@ -4,17 +4,17 @@ $white: #fff;
 $accent: #cbcbcb;
 
 :root {
-  --theme-color-black: #{hextorgb($black)};
-  --theme-color-white: #{hextorgb($white)};
+  --color-black: #{hextorgb($black)};
+  --color-white: #{hextorgb($white)};
 
-  --theme-color-accent: #{hextorgb($accent)};
+  --color-accent: #{hextorgb($accent)};
 }
 
 @mixin dark-mode {
-  --theme-color-black: #{hextorgb($white)};
-  --theme-color-white: #{hextorgb($black)};
+  --color-black: #{hextorgb($white)};
+  --color-white: #{hextorgb($black)};
 
-  --theme-color-accent: #{hextorgb($accent)};
+  --color-accent: #{hextorgb($accent)};
 }
 
 .dark-mode {
@@ -50,7 +50,7 @@ $headlines: (
 );
 
 $min-screen: 320px;
-$container-sizes: (mobile: 768px, tablet: 1024px, desktop: 1536px);
+$container-sizes: (sm: 768px, md: 1024px, lg: 1536px);
 $container-grid: 20px;
 
 $transition: all 0.3s ease;

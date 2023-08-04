@@ -19,7 +19,7 @@
 }
 
 // only mobile
-@mixin only-mobile($max_width: "mobile") {
+@mixin only-mobile($max_width: "sm") {
   $max_width: map.get($container-sizes, $max_width);
 
   @media screen and (max-width: $max_width - 1) {
@@ -51,10 +51,19 @@
 }
 
 @mixin button {
+  display: inline-block;
+
   font-family: inherit;
   vertical-align: middle;
 
   cursor: pointer;
+}
+
+@mixin button-reset {
+  @include button;
+
+  background-color: transparent;
+  border: none;
 }
 
 @mixin sr-only {
