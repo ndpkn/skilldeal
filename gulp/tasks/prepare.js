@@ -44,6 +44,7 @@ const removePromo = () =>
   src([
     `${config.src.pug.pages}/index.pug`,
     `${config.src.assets.images}/build-logo.svg`,
+    `${config.src.js.components}/ButtonComponent.js`,
   ]).pipe(clean())
 
 // Создание чистого файла index.pug
@@ -52,7 +53,18 @@ const renameIndex = () =>
     .pipe(rename('index.pug')) // переименовываем
     .pipe(dest(file => file.base)) // сохраняем измененный файл в той же директории
 
+// Очистка README.md файла
+const clearPromo = () =>
+  src(['./README.md', `${config.src.js.root}/main.js`])
+    .pipe(replace(/.*/g, '')) // очистка содержимого файла
+    .pipe(dest(file => file.base)) // сохраняем измененный файл в той же директории
+
 // Подготовка сборки к работе
-export const prepareBuild = series(replaceText, removePromo, renameIndex)
+export const prepareBuild = series(
+  replaceText,
+  removePromo,
+  renameIndex,
+  clearPromo,
+)
 
 export default prepareBuild
