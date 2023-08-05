@@ -37,8 +37,8 @@ const config = {
     },
     // версия проекта, используется для сброса кеша стилей и скриптов
     version: {
-      old: '0.1.9',
-      new: '0.1.9',
+      old: '0.1.10',
+      new: '0.1.10',
     },
     // акцентный цвет проекта
     color: {
@@ -56,6 +56,11 @@ const config = {
       new: 'XXXXXX',
     },
   },
+
+  // Эти стили не будут добавлены в main.scss
+  ignoreScssPaths: [
+    // 'scaffolds/components/_navigation.scss',
+  ],
 
   proxy: 'http://localhost', // url виртуального хоста
   port: 3000, // порт виртуального хоста

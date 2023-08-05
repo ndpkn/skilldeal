@@ -42,7 +42,12 @@ export const stylesBuild = () => {
         })),
       }),
     )
-    .pipe(sassGlob()) // проходит по всем файлам в scss, подключенным через шаблон /**/*
+    .pipe(
+      sassGlob({
+        // Эти стили добавлены в _critical.scss и не нужны в main.scss
+        ignorePaths: config.ignoreScssPaths,
+      }),
+    ) // проходит по всем файлам в scss, подключенным через шаблон /**/*
     .pipe(
       sass.sync({
         includePaths: ['./node_modules'], // ищет зависимости в node_modules, например normalize.css
