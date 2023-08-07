@@ -12,12 +12,12 @@ html.no-js(lang="ru")
   body
     if (env === "prod")
       //- Google Analytics noscript
-      noscript.
+      noscript
         iframe(src="https://www.googletagmanager.com/ns.html?id=#{google}", height="0", width="0", style="display:none;visibility:hidden")
 
       //- Yandex metrica noscript
-      noscript.
-        img(src="https://mc.yandex.ru/watch/#{yandex}", style="position:absolute; left:-9999px;", alt="") 
+      noscript
+        img(src="https://mc.yandex.ru/watch/#{yandex}", style="position:absolute; left:-9999px;", height="0", width="0", alt="") 
 
     div(hidden)
       include ../../assets/icons/sprite-mono.svg

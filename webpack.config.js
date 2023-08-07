@@ -41,6 +41,10 @@ module.exports = {
           loader: 'babel-loader', // используем в качестве обработчика babel-loader
         },
       },
+      {
+        test: /\.(sa|sc|c)ss$/,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
+      },
     ],
   },
   resolve: {

@@ -38,6 +38,10 @@ module.exports = {
     semi: ['error', 'never'],
     'arrow-parens': ['error', 'as-needed'],
     'no-underscore-dangle': 'off',
+    'no-use-before-define': 'off',
+    'no-useless-return': 'off',
+    'no-param-reassign': 'off',
+    'no-new': 'off',
   },
   settings: {
     'import/resolver': {
