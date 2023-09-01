@@ -75,6 +75,7 @@ git clone git@github.com:eliofery/gulp-template.git
 Установить зависимости.
 
 ```bash
+sudo apt update && sudo apt install graphicsmagick
 npm i
 ```
 
