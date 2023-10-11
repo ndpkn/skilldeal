@@ -5,7 +5,7 @@ module.exports = {
     es2023: true,
     jquery: false,
   },
-  extends: ['airbnb-base'],
+  extends: ['airbnb-base', 'prettier'],
   parser: '@babel/eslint-parser',
   rules: {
     indent: ['off', 2],
