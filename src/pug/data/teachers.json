@@ -1,0 +1,32 @@
+{
+  "teachers": [
+    {
+      "name": "Алексей",
+      "surname": "Сидоров",
+      "imgPath": "img/person1.jpg",
+      "position": "Senior Frontend Dev",
+      "experience": "Frontend-разработчик 5+ лет опыта"
+    },
+    {
+      "name": "Владимир",
+      "surname": "Федоров",
+      "imgPath": "img/person3.jpg",
+      "position": "Senior Frontend Dev",
+      "experience": "Frontend-разработчик 8+ лет опыта"
+    },
+    {
+      "name": "Максим",
+      "surname": "Кузнецов",
+      "imgPath": "img/person2.jpg",
+      "position": "Senior Backend Dev",
+      "experience": "Backend-разработчик 6+ лет опыта"
+    },
+    {
+      "name": "Сергей",
+      "surname": "Романов",
+      "imgPath": "img/person4.jpg",
+      "position": "Senior Backend Dev",
+      "experience": "Backend-разработчик 9+ лет опыта"
+    }
+  ]
+}

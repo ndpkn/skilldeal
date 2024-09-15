@@ -1,0 +1,48 @@
+.container.courses-container#courses
+  ul.courses-tabs
+    each tab in jsonData.courses.tabs
+      li.courses-tabs__tab(data-tab-value=`#${tab.category}`) #{tab.title}
+
+  .courses-content
+    each course in jsonData.courses.courses
+      .courses-content__block(id=course.category, data-tab-info)
+        .courses-content__text
+          h3 #{course.title}
+          .courses-content__imgMob
+            +picture(course.imgPath)(height="20", alt="курс")
+          p #{course.description}
+          button.courses-content__button(data-modal-target=`#modalCourse`, data-name=`${course.type}`)
+            |Докладніше 
+            include ../icons/arrowIcon.pug
+
+        .courses-content__img
+          +picture(course.imgPath)(height="20", alt="курс")
+
+script.
+  const tabs = document.querySelectorAll('[data-tab-value]');
+  const tabInfos = document.querySelectorAll('[data-tab-info]');
+  const allTab = document.querySelector('[data-tab-value="#all"]');
+
+  allTab.classList.add('activeTab');
+  tabInfos.forEach(tabInfo => {
+    tabInfo.classList.add('activeTabInfo')
+  })
+  tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const targets = document.querySelectorAll(tab.dataset.tabValue);
+
+        tabs.forEach(tab => tab.classList.remove('activeTab'));
+        tab.classList.add('activeTab');
+
+        if (tab.dataset.tabValue === '#all') {
+          tabInfos.forEach(tabInfo => {
+            tabInfo.classList.add('activeTabInfo')
+          })
+        } else {
+          tabInfos.forEach(tabInfo => {
+            tabInfo.classList.remove('activeTabInfo')
+          })
+          targets.forEach(target => target.classList.add('activeTabInfo'))
+        }
+      })
+    })

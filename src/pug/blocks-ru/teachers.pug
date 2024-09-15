@@ -1,0 +1,20 @@
+.container#teachers
+  h2 Наши преподаватели
+  .teachers-container 
+    .teachers-content
+      .teachers-content__text
+        p В нашей IT-школе работают только опытные и практикующие специалисты, каждый из которых обладает глубокими знаниями и многолетним опытом работы в своей области. Наши преподаватели — это профессионалы, которые не только знают теорию, но и ежедневно применяют свои навыки на практике, работая в ведущих IT-компаниях и стартапах.
+        br
+        p Мы верим, что обучение должно быть актуальным и приближенным к реальным задачам, поэтому наши наставники делятся не только учебными материалами, но и собственным опытом, лайфхаками и трендами индустрии. Благодаря этому наши студенты получают самые свежие и востребованные знания, которые помогут им успешно развиваться в карьере и справляться с реальными профессиональными вызовами.
+      .teachers-content__img
+        +picture('img/teacher.jpg')(alt="преподаватель")
+    //- each teacher in jsonData.teachersRu.teachers
+    //-   .teachers-item
+    //-     .teachers-item__top
+    //-       .teachers-item__img
+    //-         +picture(`${teacher.imgPath}`)(width="100", height="100" alt="Логотип")
+    //-       .teachers-item__name
+    //-         h4 #{teacher.name}
+    //-         h4 #{teacher.surname}
+    //-     p.teachers-item__position #{teacher.position}
+    //-     p.teachers-item__experience #{teacher.experience}

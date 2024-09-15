@@ -1,0 +1,93 @@
+#modalCourse.modal
+  .modal-content
+    .modalCourse-content
+      //- сюда вставлятся данные из js
+    button.close-modal(data-modal-closeCourse)
+      include ../icons/closeIcon.pug
+
+script.
+  const jsonData = !{JSON.stringify(jsonData)}
+  const modalCourse = document.querySelector('#modalCourse');
+  const openModalBtns = document.querySelectorAll('button[data-modal-target="#modalCourse"]');
+  const closeCourseBtn = document.querySelector('button[data-modal-closeCourse]');
+
+  const modalContent = document.querySelector('.modalCourse-content');
+
+  const generateContentForModal = () => {
+    const toggleModal = (isActive) => {
+      modalCourse.classList.toggle('active', isActive);
+      document.body.style.overflow = isActive ? 'hidden' : 'auto';
+    };
+
+  const courseDataItems = (courseDataProp) =>  `
+    <h3>${courseDataProp.title}</h3>
+    <div class="modalCourse-content__descr">
+      <p>${courseDataProp.description}</p>
+      <a href="">Программа курса</a>
+    </div>
+    <div class="modalCourse-content__infos">
+      <p><span>Занятий: </span>${courseDataProp.lessons}</p>
+      <p><span>Длительность: </span>${courseDataProp.duration}</p>
+      <p><span>Начало: </span>${courseDataProp.start}</p>
+      <p><span>Осталось мест: </span>${courseDataProp.seats}</p>
+    </div>
+    <div class="price">
+      <div class="price-item">
+        <p>Цена: </p><span class="price-old">${courseDataProp.oldPrice}</span> <span class="price-new">${courseDataProp.newPrice}</span>
+      </div>
+      <button data-modal-signUpCourse class="ctaButton">Записаться на курс</button>
+    </div>
+  `
+
+    openModalBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        toggleModal(true);
+        const courseId = btn.dataset.name;
+        const courseData = jsonData.coursesRu.coursesFull.find(course => course.type === courseId);
+        
+        modalContent.innerHTML = `
+          <div class="rate-buttons">
+            <button class="rate-button rate-button__active" data-rate="advanced">Продвинутый</button>
+            <p>|</p>
+            <button class="rate-button" data-rate="base">Базовый</button>
+          </div>
+          <div class="modalCourse-content__text">
+            ${courseDataItems(courseData)}
+          </div>
+        `;
+
+        modalContent.querySelectorAll('.rate-button').forEach(button => {
+          button.addEventListener('click', () => {
+            const rate = button.dataset.rate;
+            const courseDataForRate = jsonData.coursesRu.coursesFull.find(course => course.type === courseId && course.rate === rate);
+            if (courseDataForRate) {
+              modalContent.querySelector('.modalCourse-content__text').innerHTML = `
+                ${courseDataItems(courseDataForRate)}
+              `;
+
+              modalContent.querySelectorAll('.rate-button').forEach(btn => btn.classList.remove('rate-button__active'));
+
+              button.classList.add('rate-button__active');
+            } else {
+              console.error('Course data not found for the selected rate');
+            }
+          });
+        });
+      });
+    });
+
+    closeCourseBtn.addEventListener('click', () => toggleModal(false));
+    document.body.addEventListener('click', (e) => {
+      if (e.target === modalCourse) toggleModal(false);
+    });
+
+    modalContent.addEventListener('click', (e) => {
+      if (e.target.closest('[data-modal-signUpCourse]')) {
+        toggleModal(false);
+        const modalForm = document.querySelector('#modal');
+        modalForm.classList.add('active');
+      }
+    });
+  };
+
+  generateContentForModal();

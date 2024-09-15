@@ -1,0 +1,167 @@
+.faq {
+  &-container {
+    display: flex;
+    gap: 25px;
+    margin-top: 30px;
+
+    >h2 {
+      margin: 0;
+    }
+  }
+
+  &-tabs {
+    display: flex;
+    flex: 2;
+    flex-direction: column;
+    gap: 15px;
+    margin: 0;
+    padding: 0;
+
+    font-size: 1.5rem;
+    font-family: $font-header;
+
+    list-style: none;
+    
+    &__tab {
+      padding: 10px 20px;
+
+      background-color: $white;
+      border: 2px solid transparent; 
+      border-radius: 30px;
+      cursor: pointer;
+
+      transition: all 200ms ease-in;
+    }
+  }
+
+
+  &-content {
+    display: flex;
+    flex: 5;
+    flex-direction: column;
+    gap: 20px;
+
+    transition: all 100ms ease-in;
+
+    &__block {
+      display: none;
+      gap: 15px;
+      padding: 15px 20px;
+
+      background-color: $white;
+      border: transparent solid 2px; 
+      border-radius: 30px;
+      cursor: pointer;
+
+      transition: all 200ms ease-in;
+
+      &.activeQuestion {
+        border: $accent solid 2px;
+      }
+
+      &:hover {
+        border: rgba($accent, 0.5) solid 2px;
+      }
+    }
+
+    &__img {
+      display: flex;
+      flex: 1;
+      align-items: center;
+      justify-content: center;
+  
+      >picture {
+        >img {
+          width: 200px;
+          height: 200px;
+          object-fit: cover;
+
+          border-radius: 30px;
+        }
+      }
+    }
+  
+    &__text {
+      display: flex;
+      flex: 3;
+      flex-direction: column;
+      gap: 20px;
+      justify-content: space-between;
+
+  
+      >h3 {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        margin: 0;
+
+        >.accordeonArrow {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          transition: all 200ms ease-in;
+
+          fill: $accent;
+
+          &.arrowUp {
+            transform: rotate(-180deg);
+          }
+        }
+      }
+
+      >p {
+        display: none;
+
+        font-size: 1.3rem;
+        font-family: $font-main;
+        line-height: 1.6rem;
+
+        &.showAnswer {
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+.activeTabInfoFaq {
+  display: flex;
+}
+
+.activeTabFaq {
+  font-weight: 700;
+
+  border: 2px solid $accent;
+}
+
+@media only screen and (max-width: 768px) {
+  .faq {
+    &-container {
+      flex-direction: column;
+    }
+
+    &-tabs {
+      flex-direction: row;
+      flex-wrap: wrap;
+
+      &__tab {
+        padding: 5px 10px; 
+
+        font-size: 1.3rem;
+      }
+    }
+
+    &-content {
+      &__text {
+        >h3 {
+          line-height: 1.8rem;
+        }
+
+        >p {
+          font-size: 1.2rem;
+        }
+      }
+    }
+  }
+}

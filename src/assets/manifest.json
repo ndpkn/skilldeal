@@ -1,7 +1,7 @@
 {
-  "name": "Название проекта",
-  "short_name": "Название проекта",
-  "description": "Описание проекта",
+  "name": "SkillDeal",
+  "short_name": "SkillDeal",
+  "description": "Invest in your future",
   "lang": "ru",
   "dir": "ltr",
   "id": "/",

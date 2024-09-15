@@ -1,0 +1,12 @@
+mixin formRu
+  form#formModal(action="", method="post")
+    .modal-content__form-item
+      label(for="name") Имя
+      input(type="text", id="name", name="name", required)
+
+    .modal-content__form-item
+      label(for="phone") Номер телефона
+      input(type="tel", id="phone", name="phone", required)
+      span#error-msg.hide
+
+    button#submit.ctaButton(type="submit") Заказать консультацию

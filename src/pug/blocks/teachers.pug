@@ -1,0 +1,20 @@
+.container#teachers
+  h2 Наші викладачі
+  .teachers-container 
+    .teachers-content
+      .teachers-content__text
+        p В нашій IT-школі працюють тільки досвідчені та практикуючі спеціалісти, кожен з яких має глибокі знання та багаторічний досвід роботи у своїй галузі. Наші викладачі — це професіонали, які не лише знають теорію, але й щодня застосовують свої навички на практиці, працюючи у провідних IT-компаніях та стартапах.
+        br
+        p Ми віримо, що навчання має бути актуальним і наближеним до реальних завдань, тому наші наставники діляться не тільки навчальними матеріалами, але й власним досвідом, лайфхаками та трендами індустрії. Завдяки цьому наші студенти отримують найсвіжіші й затребувані знання, які допоможуть їм успішно розвиватися в кар'єрі та справлятися з реальними професійними викликами.
+      .teachers-content__img
+        +picture('img/teacher.jpg')(alt="викладач")
+    //- each teacher in jsonData.teachers.teachers
+    //-   .teachers-item
+    //-     .teachers-item__top
+    //-       .teachers-item__img
+    //-         +picture(`${teacher.imgPath}`)(width="100", height="100" alt="фото преподавателя")
+    //-       .teachers-item__name
+    //-         h4 #{teacher.name}
+    //-         h4 #{teacher.surname}
+    //-     p.teachers-item__position #{teacher.position}
+    //-     p.teachers-item__experience #{teacher.experience}

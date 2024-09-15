@@ -35,7 +35,7 @@ const imageBuild = () =>
 // Переносит содержимое из библиотек node_modules в src/assets/libs
 const componentsBuild = () => {
   // Список библиотек, которые будут переноситься
-  const folders = ['slick-carousel/slick']
+  const folders = ['slick-carousel/slick', 'intl-tel-input']
 
   const tasks = folders.map(folder => {
     const pathFolder = `node_modules/${folder}` // полный путь до node_modules библиотеки

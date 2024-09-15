@@ -1,0 +1,70 @@
+.container
+  h2 Питання / Відповідь
+  .faq-container#faq
+    ul.faq-tabs
+      each tab in jsonData.faq.tabsFaq
+        li.faq-tabs__tab(data-tabfaq-value=`#${tab.category}`) #{tab.title}
+
+    .faq-content
+      each question in jsonData.faq.faqContent
+        .faq-content__block(id=question.type, data-tabFaq-info)
+          .faq-content__text
+            h3 #{question.title}
+              include ../icons/accordeonIcon.pug
+            p #{question.answer}
+
+script.
+  const tabsFaq = document.querySelectorAll('[data-tabfaq-value]');
+  const tabInfosFaq = document.querySelectorAll('[data-tabfaq-info]');
+
+  tabsFaq[0].classList.add('activeTabFaq');
+
+  tabsFaq.forEach(tab => {
+    const targets = document.querySelectorAll(tab.dataset.tabfaqValue);
+    targets.forEach(target => {
+      if (target.id === 'general') {
+        target.classList.add('activeTabInfoFaq')
+      }
+    })
+
+    tab.addEventListener('click', () => {
+      tabsFaq.forEach(tab => tab.classList.remove('activeTabFaq'));
+      tab.classList.add('activeTabFaq');
+
+      tabInfosFaq.forEach(tabInfo => {
+        tabInfo.classList.remove('activeTabInfoFaq')
+      })
+      console.log(targets)
+      targets.forEach(target => target.classList.add('activeTabInfoFaq'))
+    })
+  })
+
+
+  const faqContentBlocks = document.querySelectorAll('.faq-content__block');
+  let activeBlock = null;
+
+  faqContentBlocks.forEach(block => {
+    const title = block.querySelector('.faq-content__text h3');
+    const arrowIcon = block.querySelector('.accordeonArrow')
+    const answer = block.querySelector('.faq-content__text p');
+
+    block.addEventListener('click', () => {
+      if (activeBlock === block) {
+        answer.classList.toggle('showAnswer', false);
+        block.classList.toggle('activeQuestion', false);
+        arrowIcon.classList.toggle('arrowUp', false)
+        activeBlock = null;
+      } else {
+        if (activeBlock) {
+          activeBlock.querySelector('.faq-content__text p').classList.toggle('showAnswer', false);
+          activeBlock.classList.toggle('activeQuestion', false);
+          arrowIcon.classList.toggle('arrowUp', false)
+        }
+
+        activeBlock = block;
+        answer.classList.toggle('showAnswer', true);
+        block.classList.toggle('activeQuestion', true);
+        arrowIcon.classList.toggle('arrowUp', true)
+      }
+    });
+  });

@@ -1,0 +1,10 @@
+.container.features-container#features
+  h2 Переваги SkillDeal 
+  .features-items
+    each feature in jsonData.features.featuresBlock
+      .features-item 
+        .features-item_icon
+          span #{feature.emoji}
+        .features-item_text 
+          h4 #{feature.title}
+          p  #{feature.description}

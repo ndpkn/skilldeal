@@ -29,7 +29,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  background-color: rgb(var(--color-white));
+  background-color: rgb(var(--color-light));
 }
 
 img {
@@ -48,8 +48,9 @@ button {
   #{$headline} {
     margin: $margin 0 math.div($margin, 2);
 
-    font-weight: 500;
+    font-weight: 700;
     font-size: $size;
+    font-family: $font-header;
   }
 }
 
@@ -60,4 +61,8 @@ b {
 
 .sr-only {
   @include sr-only;
+}
+
+p {
+  margin: 0;
 }

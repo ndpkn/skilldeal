@@ -1,0 +1,77 @@
+.container.header-container
+  header
+    .topHeader
+      include ../parts/logo.pug
+      .topHeader-buttons
+        include ../partsRu/ctaButton.pug
+        ul.topHeader-switch
+          li#ru
+            a(href="/") Ру
+          li#ua
+            a(href="/ua.html") Укр
+      .mobileMenu-btn
+        span
+        span
+        span
+
+    .bottomHeader
+      nav
+        ul
+          each item in jsonData.mainNavRu.items
+            li
+              a(href=item.link) #{ item.title }
+
+    .mobileMenu 
+      .mobileMenu-wrapper
+        button.mobileMenu-closeBtn
+          include ../icons/closeIcon.pug
+        nav
+          ul
+            each item in jsonData.mainNavRu.items
+              li.mobileMenu-link
+                a(href=item.link) #{ item.title }
+        include ../partsRu/ctaButton.pug
+        ul.topHeader-switch
+          li#ru
+            a(href="/") Ру
+          li#ua
+            a(href="/ua.html") Укр
+
+
+script.
+  const pathname = window.location.pathname
+  const ruButtons = document.querySelectorAll('#ru')
+  const ukrButtons = document.querySelectorAll('#ua')
+
+  if(pathname.includes('ua')) {
+    ukrButtons.forEach(ukrButton => ukrButton.classList.add('activeSwitch'))
+  } else {
+    ruButtons.forEach(ruButton => ruButton.classList.add('activeSwitch'))
+  }
+
+  const menuBtn = document.querySelector('.mobileMenu-btn')
+  const menuBlock = document.querySelector('.mobileMenu')
+  const menuLinks = document.querySelectorAll('.mobileMenu-link')
+  const menuCloseBtn = document.querySelector('.mobileMenu-closeBtn')
+
+  menuBtn.addEventListener('click', () => {
+    menuBlock.classList.toggle('mobileMenu__active')
+    document.body.setAttribute('style', 'overflow: hidden')
+  })
+  menuCloseBtn.addEventListener('click', () => {
+    menuBlock.classList.remove('mobileMenu__active')
+    document.body.setAttribute('style', 'overflow: auto')
+  })
+
+  menuLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      menuBlock.classList.remove('mobileMenu__active')
+    })
+  })
+
+  document.body.addEventListener('click', (e) => {
+    if (e.target === menuBlock) {
+      menuBlock.classList.remove('mobileMenu__active');
+      document.body.setAttribute('style', 'overflow: auto')
+    }
+  });

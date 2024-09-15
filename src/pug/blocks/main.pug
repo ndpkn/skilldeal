@@ -1,0 +1,18 @@
+.container
+  .main-container
+    .main-info
+      .main-info__text
+        h1 Навчаємо ІТ-професіям з нуля та гарантуємо нову роботу
+        p Допомагаємо з працевлаштуванням після закінчення курсів
+        .desktopBtn
+          include ../parts/ctaButton.pug
+      
+      .main-info__img
+        +picture("img/main.png")(width="500", alt="Логотип")
+      .mobileBtn
+        include ../parts/ctaButton.pug
+
+    .main-features
+      each feature in jsonData.features.features
+        .main-feature
+          h3 #{feature.title}

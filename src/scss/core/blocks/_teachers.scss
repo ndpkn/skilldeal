@@ -1,0 +1,117 @@
+.teachers {
+  &-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: stretch;
+    justify-content: space-between;
+  }
+
+  &-content {
+    display: flex;
+    gap: 20px;
+    padding: 15px 20px;
+
+    background-color: $white;
+    border-radius: 30px;
+
+    &__img {
+      flex: 1;
+      >picture {
+          >img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+
+            border-radius: 30px;
+          }
+        }
+    }
+
+    &__text {
+      flex: 1;
+
+      >p {
+        font-size: 1.2rem;
+        font-family: $font-main;
+        line-height: 1.5rem;
+      }
+    }
+  }
+
+  &-item {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    width: calc(25% - 15px);
+    padding: 15px 20px;
+
+    background-color: $white;
+    border: transparent solid 2px;
+    border-radius: 30px;
+    cursor: default;
+
+    transition: all 100ms ease-in;
+
+    &:hover {
+      border: rgba($accent, 0.5) solid 2px;
+    }
+
+    &__top {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+
+    &__img {
+      clip-path: circle(44% at 50% 50%);
+    }
+
+    &__name {
+      >h4 {
+        margin: 0;
+
+        font-size: 1.4rem;
+      }
+    }
+
+    &__position {
+      font-weight: 700;
+      font-size: 1.2em;
+      font-family: $font-header;
+    }
+
+    &__experience {
+      font-family: $font-main;
+      text-align: center;
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .teachers {
+    &-content {
+      flex-direction: column-reverse;
+
+      &__text {
+        >p {
+          font-size: 1.1rem;
+          line-height: 1.5rem;
+        }
+      }
+
+      &__img {
+        >picture {
+          >img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+
+            border-radius: 30px;
+          }
+        }
+      }
+    }
+  }
+}

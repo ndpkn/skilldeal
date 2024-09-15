@@ -6,3 +6,18 @@
 
 @import "scaffolds/components/**/*";
 @import "scaffolds/sections/**/*";
+
+@import "core/base/logo";
+@import "core/base/ctaButton";
+@import "core/base/modal";
+
+@import "core/blocks/header";
+@import "core/blocks/main";
+@import "core/blocks/courses";
+@import "core/blocks/features";
+@import "core/blocks/reviews";
+@import "core/blocks/teachers";
+@import "core/blocks/ctaBlock";
+@import "core/blocks/footer";
+@import "core/blocks/faq";
+@import "core/blocks/employment";

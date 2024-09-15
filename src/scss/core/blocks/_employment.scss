@@ -1,0 +1,46 @@
+.employment {
+  &-container {
+    display: flex;
+    gap: 20px;
+    margin-top: 35px;
+    padding: 25px 50px;
+
+    background-color: $white;
+    border-radius: 30px;
+
+    >h2 {
+      flex: 2;
+      margin: 0;
+    }
+  }
+  &-text {
+    display: flex;
+    flex: 3;
+    flex-direction: column;
+    gap: 15px;
+    
+    >p {
+      font-size: 1.2rem;
+      font-family: $font-main;
+      line-height: 1.5rem;
+
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .employment {
+    &-container {
+      flex-direction: column;
+      padding: 15px 20px;
+
+      >h2 {
+        line-height: 2.4rem;
+      }
+    }
+    &-text {
+      font-size: 1.1rem;
+      line-height: 1.5rem;
+    }
+  }
+}

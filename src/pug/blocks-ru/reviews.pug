@@ -1,0 +1,37 @@
+.container.reviews-container#reviews
+  h2 Отзывы выпускников школы SkillDeal
+
+  section.slider-wrapper
+    ul.reviews-items.slides-container#slides-container
+      each review in jsonData.reviewsRu.reviews
+        li.reviews-item.slide
+          .reviews-item__top
+            .reviews-item__img
+              +picture(`${review.imgPath}`)(width="70", height="70", alt="Логотип")
+            .reviews-item__name
+              h5 #{review.name}
+          .reviews-item__description 
+            p #{review.description}
+          span.reviews-item__course Курс:
+            p #{review.course}
+    .reviews-items_btns
+      button.slide-arrow#slide-arrow-prev
+        | <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" ><path d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg>
+      button.slide-arrow#slide-arrow-next
+        | <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" ><path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z"/></svg>
+
+script.
+  const slidesContainer = document.getElementById("slides-container");
+  const slide = document.querySelector(".slide");
+  const prevButton = document.getElementById("slide-arrow-prev");
+  const nextButton = document.getElementById("slide-arrow-next");
+
+  nextButton.addEventListener("click", (event) => {
+    const slideWidth = slide.clientWidth;
+    slidesContainer.scrollLeft += (slideWidth + 15);
+  });
+
+  prevButton.addEventListener("click", () => {
+    const slideWidth = slide.clientWidth;
+    slidesContainer.scrollLeft -= slideWidth;
+  });

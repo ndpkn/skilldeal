@@ -1,0 +1,32 @@
+footer.container#contacts
+  .footer-container
+    .footer-main 
+      .footer-logo
+        include ../parts/logo.pug
+
+      .footer-links
+        nav
+          ul
+            each item in jsonData.mainNav.items
+              li
+                a(href=item.link) #{ item.title }
+
+      .footer-social
+        a(href="https://t.me/skilldeal", target="_blank")
+          include ../icons/telegramIcon.pug
+          |Telegram
+        //- a(href="http://wa.me/" target="_blank")
+        //-   include ../icons/whatsappIcon.pug
+        //-   |WhatsApp
+        a(href="http://instagram.com/skilldeal.club", target="_blank")
+          include ../icons/instIcon.pug
+          |Instagram
+
+      .footer-contacts
+        a(href="mailto:skill.deal.box@gmail.com") skill.deal.box@gmail.com
+        //- a(href="tel:+380507000000") +380507000000
+  .footer-copyright
+    p Copyright © 2024 SkillDeal
+
+  include ../parts/modalForm.pug
+  include ../parts/modalCourse.pug

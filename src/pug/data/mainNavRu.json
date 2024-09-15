@@ -1,0 +1,25 @@
+{
+  "items": [
+    {
+      "title": "Преимущества",
+      "link": "#features"
+    },
+    {
+      "title": "Курсы",
+      "link": "#courses"
+    },
+    {
+      "title": "Отзывы",
+      "link": "#reviews"
+    },
+    {
+      "title": "Преподаватели",
+      "link": "#teachers"
+    },
+    {
+      "title": "Контакты",
+      "link": "#contacts"
+    }
+  ]
+}
+

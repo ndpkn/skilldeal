@@ -1,0 +1,93 @@
+#modalCourse.modal
+  .modal-content
+    .modalCourse-content
+      //- сюда вставлятся данные из js
+    button.close-modal(data-modal-closeCourse)
+      include ../icons/closeIcon.pug
+
+script.
+  const jsonData = !{JSON.stringify(jsonData)}
+  const modalCourse = document.querySelector('#modalCourse');
+  const openModalBtns = document.querySelectorAll('button[data-modal-target="#modalCourse"]');
+  const closeCourseBtn = document.querySelector('button[data-modal-closeCourse]');
+
+  const modalContent = document.querySelector('.modalCourse-content');
+
+  const generateContentForModal = () => {
+    const toggleModal = (isActive) => {
+      modalCourse.classList.toggle('active', isActive);
+      document.body.style.overflow = isActive ? 'hidden' : 'auto';
+    };
+
+  const courseDataItems = (courseDataProp) =>  `
+    <h3>${courseDataProp.title}</h3>
+    <div class="modalCourse-content__descr">
+      <p>${courseDataProp.description}</p>
+      <a href="">Програма курсу</a>
+    </div>
+    <div class="modalCourse-content__infos">
+      <p><span>Занять: </span>${courseDataProp.lessons}</p>
+      <p><span>Тривалість: </span>${courseDataProp.duration}</p>
+      <p><span>Початок: </span>${courseDataProp.start}</p>
+      <p><span>Залишилося місць: </span>${courseDataProp.seats}</p>
+    </div>
+    <div class="price">
+      <div class="price-item">
+        <p>Ціна: </p><span class="price-old">${courseDataProp.oldPrice}</span> <span class="price-new">${courseDataProp.newPrice}</span>
+      </div>
+      <button data-modal-signUpCourse class="ctaButton">Записатися на курс</button>
+    </div>
+  `
+
+    openModalBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        toggleModal(true);
+        const courseId = btn.dataset.name;
+        const courseData = jsonData.courses.coursesFull.find(course => course.type === courseId);
+        
+        modalContent.innerHTML = `
+          <div class="rate-buttons">
+            <button class="rate-button rate-button__active" data-rate="advanced">Просунутий</button>
+            <p>|</p>
+            <button class="rate-button" data-rate="base">Базовий</button>
+          </div>
+          <div class="modalCourse-content__text">
+            ${courseDataItems(courseData)}
+          </div>
+        `;
+
+        modalContent.querySelectorAll('.rate-button').forEach(button => {
+          button.addEventListener('click', () => {
+            const rate = button.dataset.rate;
+            const courseDataForRate = jsonData.courses.coursesFull.find(course => course.type === courseId && course.rate === rate);
+            if (courseDataForRate) {
+              modalContent.querySelector('.modalCourse-content__text').innerHTML = `
+                ${courseDataItems(courseDataForRate)}
+              `;
+
+              modalContent.querySelectorAll('.rate-button').forEach(btn => btn.classList.remove('rate-button__active'));
+
+              button.classList.add('rate-button__active');
+            } else {
+              console.error('Дані курсу не знайдено для обраного рівня');
+            }
+          });
+        });
+      });
+    });
+
+    closeCourseBtn.addEventListener('click', () => toggleModal(false));
+    document.body.addEventListener('click', (e) => {
+      if (e.target === modalCourse) toggleModal(false);
+    });
+
+    modalContent.addEventListener('click', (e) => {
+      if (e.target.closest('[data-modal-signUpCourse]')) {
+        toggleModal(false);
+        const modalForm = document.querySelector('#modal');
+        modalForm.classList.add('active');
+      }
+    });
+  };
+
+  generateContentForModal();

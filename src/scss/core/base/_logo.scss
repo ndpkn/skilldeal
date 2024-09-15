@@ -1,0 +1,33 @@
+// @include font-face("Roboto Slab-Thin", "../fonts/roboto_slab/RobotoSlab-Light", 100);
+
+.logo {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+
+  &Img {
+  }
+  &Text {
+    display: flex;
+    flex-direction: column;
+
+    font-family: $font-main;
+    line-height: 1;
+    text-align: left;
+
+    &Main {
+      color: $black;
+      font-size: 1.9rem;
+
+      >span {
+        color: $accent;
+      }
+    }
+
+    &Second {
+      color: rgba($black, 0.8);
+      font-size: 0.9rem;
+    }
+  }
+}
