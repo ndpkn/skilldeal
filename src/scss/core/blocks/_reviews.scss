@@ -141,6 +141,22 @@
     &-item {
       flex: 1 0 80%;
       width: 80%;
+      max-width: 230px;
+      
+      &__description {
+        >p {
+          font-size: 0.8rem;
+        }
+      }
+
+      &__course {
+        font-size: 0.8rem;
+        
+        >p {
+          font-size: 0.8rem;
+          
+        }
+      }
     }
   }
 }
