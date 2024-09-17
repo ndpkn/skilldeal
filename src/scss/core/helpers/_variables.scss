@@ -13,22 +13,22 @@ $logoColor: #9D5D36;
   --color-accent: #{hextorgb($accent)};
 }
 
-@mixin dark-mode {
-  --color-black: #{hextorgb($white)};
-  --color-white: #{hextorgb($black)};
+// @mixin dark-mode {
+//   --color-black: #{hextorgb($white)};
+//   --color-white: #{hextorgb($black)};
 
-  --color-accent: #{hextorgb($accent)};
-}
+//   --color-accent: #{hextorgb($accent)};
+// }
 
-.dark-mode {
-  @include dark-mode;
-}
+// .dark-mode {
+//   @include dark-mode;
+// }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    @include dark-mode;
-  }
-}
+// @media (prefers-color-scheme: dark) {
+//   :root {
+//     @include dark-mode;
+//   }
+// }
 
 $font-primary: Roboto, -apple-system, Arial, sans-serif;
 $font-main: Raleway;
