@@ -29,11 +29,11 @@ const config = {
     },
     title: {
       old: 'Название проекта',
-      new: 'SkillDeal',
+      new: 'SkillDeal | Онлайн курсы программирования',
     },
     desc: {
       old: 'Описание проекта',
-      new: 'Invest in your future',
+      new: 'Онлайн школа программирования для начинающих и продвинутых разработчиков. Обучение языкам программирования и технологиям: Python, JavaScript, TypeScript, VueJS, FastAPI и другим.',
     },
     // версия проекта, используется для сброса кеша стилей и скриптов
     version: {
@@ -43,7 +43,7 @@ const config = {
     // акцентный цвет проекта
     color: {
       old: '#000',
-      new: '#000',
+      new: '#f5f5f5',
     },
     // google analytics
     google: {

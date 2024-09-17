@@ -13,12 +13,11 @@ const errorMap = [
 ]
 
 forms.forEach(form => {
-  const input = form.querySelector('#phone') // Select the phone input within each form
-  const button = form.querySelector('#submit') // Select the submit button within each form
-  const errorMsg = form.querySelector('#error-msg') // Select the error message element within each form
-  const nameInput = form.querySelector('#name') // Select the name input within each form
+  const input = form.querySelector('#phone')
+  const button = form.querySelector('#submit')
+  const errorMsg = form.querySelector('#error-msg')
+  // const nameInput = form.querySelector('#name')
 
-  // Initialize intlTelInput for each form
   const iti = intlTelInput(input, {
     initialCountry: 'ua',
     onlyCountries: [
@@ -72,7 +71,6 @@ forms.forEach(form => {
     utilsScript: '/intl-tel-input/js/utils.js?1725646185594',
   })
 
-  // Define reset and showError functions for each form
   const reset = () => {
     input.classList.remove('error')
     errorMsg.innerHTML = ''
@@ -85,20 +83,30 @@ forms.forEach(form => {
     errorMsg.classList.remove('hide')
   }
 
-  // Add event listeners for each form
   button.addEventListener('click', e => {
     e.preventDefault()
     reset()
     if (!input.value.trim()) {
       showError("Обов'язково / Обязательно")
     } else if (iti.isValidNumberPrecise()) {
-      // Send form data to server-side script
       const formData = new FormData(form)
-      formData.append('name', nameInput.value)
-      formData.append('phone', input.value)
-      // formData.forEach((value, key) => {
-      //   console.log(`${key}: ${value}`)
-      // })
+      // formData.append('name', nameInput.value)
+      // formData.append('phone', input.value)
+
+      fetch('send.php', {
+        method: 'POST',
+        body: formData,
+      })
+        .then(response => response.json())
+        // eslint-disable-next-line no-console
+        .then(data => console.log(data))
+        // eslint-disable-next-line no-console
+        .catch(error => console.error('Error:', error))
+
+      formData.forEach((value, key) => {
+        // eslint-disable-next-line no-console
+        console.log(`${key}: ${value}`)
+      })
     } else {
       const errorCode = iti.getValidationError()
       const msg = errorMap[errorCode] || 'Невірний номер / Неправильный номер'
@@ -111,10 +119,9 @@ forms.forEach(form => {
 })
 
 const intSearchInputs = document.querySelectorAll('.iti__search-input')
-
-intSearchInputs.forEach(intSearchInput =>
-  intSearchInput.setAttribute('placeholder', 'Пошук / Поиск'),
-)
+intSearchInputs.forEach(intSearchInput => {
+  intSearchInput.setAttribute('placeholder', 'Пошук / Поиск')
+})
 
 // Плавная прокрутка к якорю
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -129,7 +136,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 })
 
 // Липкое меню
-
 const bottomHeader = document.querySelector('.bottomHeader')
 const topHeader = document.querySelector('.topHeader')
 const topHeaderHeight = topHeader.clientHeight

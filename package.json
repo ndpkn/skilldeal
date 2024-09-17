@@ -1,7 +1,7 @@
 {
-  "name": "SkillDeal",
+  "name": "skilldeal",
   "version": "0.1.13",
-  "description": "Invest in your future",
+  "description": "IT-courses online",
   "keywords": [],
   "scripts": {
     "prepare": "husky install",

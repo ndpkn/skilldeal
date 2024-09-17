@@ -5,7 +5,7 @@
     margin-top: 35px;
   }
 
-    &-form {
+  &-form {
     flex: 2;
     height: 100%;
     padding: 15px 20px;
@@ -72,6 +72,25 @@
   .ctaBlock {
     &-container {
       flex-direction: column;
+    }
+
+    &-text {
+      >h3 {
+        font-size: 1.8rem;
+        line-height: 2.2rem;
+      }
+
+      >span {
+        font-size: 1.3rem;
+      }
+    }
+
+    &-form {
+      >form {
+        >button[type=submit] {
+          font-size: 1.2rem;
+        }
+      }
     }
   }
 }

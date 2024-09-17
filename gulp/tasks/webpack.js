@@ -8,10 +8,10 @@
 import { dest, src, watch } from 'gulp' // gulp плагин
 import plumber from 'gulp-plumber' // перехватывает ошибки
 import notify from 'gulp-notify' // уведомляет об ошибках
-import gulpif from 'gulp-if' // вызывает функции по условию
+// import gulpif from 'gulp-if' // вызывает функции по условию
 import webpackStream from 'webpack-stream' // webpack плагин
 import named from 'vinyl-named-with-path' // дает возможность использовать ${config.src.js}/*.js конструкцию
-import strip from 'gulp-strip-comments' // очищает комментарии
+// import strip from 'gulp-strip-comments' // очищает комментарии
 
 // Конфиги
 import config from '../config'
@@ -32,7 +32,7 @@ export const webpackBuild = () =>
     )
     .pipe(named()) // меняем [name] на имя файла
     .pipe(webpackStream(webpackConfig)) // настройки webpack
-    .pipe(gulpif(config.isProd, strip())) // удаляем комментарии в коде
+    // .pipe(gulpif(config.isProd, strip())) // удаляем комментарии в коде
     .pipe(dest(`${config.build.js}`)) // исходящий файл
     .pipe(browserSync.stream()) // обновление страницы в браузере
 

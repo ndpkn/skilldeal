@@ -7,4 +7,34 @@
           span #{feature.emoji}
         .features-item_text 
           h4 #{feature.title}
-          p  #{feature.description}
+          p 
+            span.truncated-text
+              span.truncated-text 
+                | #{feature.description.split(" ").splice(0, 7).join(" ")}
+                if feature.description.length > 80
+                  |...
+            span.full-text #{feature.description}
+          if feature.description.length > 80
+            a.show-more Показати повністю
+
+script.
+  document.addEventListener("DOMContentLoaded", function() {
+    const showMoreLinks = document.querySelectorAll(".show-more");
+    showMoreLinks.forEach((link) => {
+      link.addEventListener("click", function() {
+        const parent = link.parentNode;
+        const truncatedText = parent.querySelector(".truncated-text");
+        const fullText = parent.querySelector(".full-text");
+
+        if (link.textContent === "Сховати") {
+          truncatedText.style.display = "inline-block";
+          fullText.style.display = "none";
+          link.textContent = "Показати повністю";
+        } else {
+          truncatedText.style.display = "none";
+          fullText.style.display = "inline-block";
+          link.textContent = "Сховати";
+        }
+      });
+    });
+  })

@@ -12,9 +12,9 @@
   background-color: rgba($black, 0.7);
 
   &.active {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: block;
+    // align-items: center;
+    // justify-content: center;
     overflow: scroll;
   }
 
@@ -118,6 +118,10 @@
   outline: none;
 }
 
+.iti--fullscreen-popup {
+  z-index: 10000 !important;
+}
+
 
 .modalCourse {
   &-content {
@@ -214,7 +218,6 @@
   &-buttons {
     display: flex;
     gap: 15px;
-    // border-bottom: rgba($black, 0.3) solid 1px;
     padding-bottom: 15px;
 
     >p {
@@ -234,7 +237,6 @@
     border-bottom: transparent solid 2px;
 
     &__active {
-      // color: $accent;
       border-bottom: $accent solid 2px;
     }
   }
@@ -275,8 +277,46 @@
 
 @media only screen and (max-width: 768px) {
   .modal {
+    padding: 20px 0;
+
     &-content {
+      flex-direction: column;
+      gap: 15px;
+      align-items: center;
       max-width: 90%;
+
+      &__info {
+        align-items: center;
+
+        >h3 {
+          line-height: 2.8rem;
+          text-align: center;
+        }
+      }
     }
+
+    &Course {
+      &-content {
+        &__text {
+          >h3 {
+            line-height: 2.3rem;
+          }
+        }
+
+        &__infos {
+          >p {
+            width: 100%;
+          }
+        }
+      }
+    }
+
+    &.active {
+      display: block;
+    }
+  }
+
+  .price {
+    flex-direction: column;
   }
 }
