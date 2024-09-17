@@ -13,6 +13,29 @@ script.
 
   const modalContent = document.querySelector('.modalCourse-content');
 
+  const showMoreFunc = () => {
+    const showMoreLinksDescr = document.querySelectorAll(".show-moreDescr");
+
+    showMoreLinksDescr.forEach((link) => {
+      console.log('click')
+      link.addEventListener("click", function() {
+        const parent = link.parentNode;
+        const truncatedText = parent.querySelector(".truncated-textDescr");
+        const fullText = parent.querySelector(".full-textDescr");
+
+        if (link.textContent === "Скрыть") {
+          truncatedText.style.display = "inline-block";
+          fullText.style.display = "none";
+          link.textContent = "Показать полностью";
+        } else {
+          truncatedText.style.display = "none";
+          fullText.style.display = "inline-block";
+          link.textContent = "Скрыть";
+        }
+      });
+    });
+  }
+
   const generateContentForModal = () => {
     const toggleModal = (isActive) => {
       modalCourse.classList.toggle('active', isActive);
@@ -22,8 +45,17 @@ script.
   const courseDataItems = (courseDataProp) =>  `
     <h3>${courseDataProp.title}</h3>
     <div class="modalCourse-content__descr">
-      <p>${courseDataProp.description}</p>
-      <a href="">Программа курса</a>
+      <p>
+        <span class="truncated-textDescr">
+          ${courseDataProp.description.split(" ").splice(0, 15).join(" ")}
+          ${courseDataProp.description.length > 180 ? '...' : ''}
+        </span>
+        <span class="full-textDescr">${courseDataProp.description}</span>
+      </p>
+      ${courseDataProp.description.length > 180
+      ? '<a class="show-moreDescr">Показать полностью</a>'
+      : ''}
+      <a class="modalCourse-content__btn target="_blank" href=${courseDataProp.courseLink}>Программа курса</a>
     </div>
     <div class="modalCourse-content__infos">
       <p><span>Занятий: </span>${courseDataProp.lessons}</p>
@@ -56,14 +88,19 @@ script.
           </div>
         `;
 
+        showMoreFunc()
+
         modalContent.querySelectorAll('.rate-button').forEach(button => {
           button.addEventListener('click', () => {
             const rate = button.dataset.rate;
             const courseDataForRate = jsonData.coursesRu.coursesFull.find(course => course.type === courseId && course.rate === rate);
+
+            
             if (courseDataForRate) {
               modalContent.querySelector('.modalCourse-content__text').innerHTML = `
                 ${courseDataItems(courseDataForRate)}
               `;
+              showMoreFunc()
 
               modalContent.querySelectorAll('.rate-button').forEach(btn => btn.classList.remove('rate-button__active'));
 

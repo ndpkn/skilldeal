@@ -146,20 +146,20 @@
 
       border-top: rgba($black, 0.4) solid 1px;
       border-bottom: rgba($black, 0.4) solid 1px;
+    }
 
-      >a {
-        align-self: flex-start;
-        margin: 10px 0;
-        padding: 10px 15px;
+    &__btn {
+      align-self: flex-start;
+      margin: 10px 0;
+      padding: 10px 15px;
 
-        color: $black;
-        font-family: "Roboto", serif;
-        text-decoration: none;
+      color: $black;
+      font-family: "Roboto", serif;
+      text-decoration: none;
 
-        background-color: $white;
-        border: $accent solid 2px;
-        border-radius: 30px;
-      }
+      background-color: $white;
+      border: $accent solid 2px;
+      border-radius: 30px;
     }
 
     &__infos {
@@ -240,7 +240,6 @@
       border-bottom: $accent solid 2px;
     }
   }
-
 }
 
 .closeIcon {
@@ -275,6 +274,32 @@
   color: red;
 }
 
+.truncated-textDescr {
+  display: none;
+  width: 100%;
+
+}
+
+.full-textDescr {
+  display: block;
+}
+
+.show-moreDescr {
+  display: none;
+
+  color: $accent;
+  font-size: 1.1rem;
+  font-family: $font-main;
+  line-height: 1.3rem;
+  text-decoration: none;
+
+  cursor: pointer;
+}
+
+.show-moreDescr:hover {
+  text-decoration: none;
+}
+
 @media only screen and (max-width: 768px) {
   .modal {
     padding: 20px 0;
@@ -293,20 +318,36 @@
           text-align: center;
         }
       }
+
+      &__descr {
+        font-size: 1rem;
+      }
     }
 
     &Course {
       &-content {
         &__text {
           >h3 {
-            line-height: 2.3rem;
+            font-size: 1.5rem;
+            line-height: 1.8rem;
           }
         }
 
         &__infos {
+          gap: 5px;
+
+          font-size: 1rem;
+
           >p {
             width: 100%;
+            margin-bottom: 5px;
           }
+        }
+
+        &__btn {
+          padding: 5px 10px;
+
+          font-size: 1rem;
         }
       }
     }
@@ -318,5 +359,47 @@
 
   .price {
     flex-direction: column;
+    padding: 10px 0;
+
+    &-item {
+      font-size: 1.1rem;
+    }
   }
+
+  .truncated-textDescr {
+    display: block;
+
+    font-size: 1rem;
+  }
+  .full-textDescr {
+    display: none;
+
+    font-size: 1rem;
+  }
+  .show-moreDescr {
+    display: block;
+
+    font-size: 0.8rem;
+  }
+
+  .rate {
+  &-buttons {
+    display: flex;
+    gap: 15px;
+    padding-bottom: 15px;
+
+    >p {
+      color: rgba($black, 0.3);
+      font-size: 2rem;
+    }
+  }
+
+  &-button {
+    font-size: 1rem;
+
+    &__active {
+      border-bottom: $accent solid 2px;
+    }
+  }
+}
 }
