@@ -4,18 +4,29 @@ import intlTelInput from 'intl-tel-input/intlTelInputWithUtils'
 import 'intl-tel-input/build/css/intlTelInput.css'
 
 const forms = document.querySelectorAll('form') // Select all forms on the page
-const errorMap = [
-  'Невірний номер / Неправильный номер',
-  'Недійсний код країни / Недействительный код страны',
-  'Занадто короткий / Слишком короткий',
-  'Занадто довгий / Слишком длинный',
-  'Невірний номер / Неправильный номер',
-]
+const { pathname } = window.location
+
+const errorMap = pathname.includes('ua')
+  ? [
+      'Невірний номер',
+      'Недійсний код країни',
+      'Занадто короткий',
+      'Занадто довгий',
+      'Невірний номер ',
+    ]
+  : [
+      'Неправильный номер',
+      'Недействительный код страны',
+      'Слишком короткий',
+      'Слишком длинный',
+      'Неправильный номер',
+    ]
 
 forms.forEach(form => {
   const input = form.querySelector('#phone')
   const button = form.querySelector('#submit')
   const errorMsg = form.querySelector('#error-msg')
+  const successMsg = form.querySelector('#success-msg')
   // const nameInput = form.querySelector('#name')
 
   const iti = intlTelInput(input, {
@@ -75,6 +86,8 @@ forms.forEach(form => {
     input.classList.remove('error')
     errorMsg.innerHTML = ''
     errorMsg.classList.add('hide')
+    successMsg.innerHTML = ''
+    successMsg.classList.add('hide')
   }
 
   const showError = msg => {
@@ -83,34 +96,61 @@ forms.forEach(form => {
     errorMsg.classList.remove('hide')
   }
 
+  const showSuccess = msg => {
+    input.classList.add('success')
+    successMsg.innerHTML = msg
+    successMsg.classList.remove('hide')
+  }
+
+  let timesSubmitted = 0
+  let Timer = null
+  const timeCounter = 60 * 1000
+
   button.addEventListener('click', e => {
     e.preventDefault()
     reset()
-    if (!input.value.trim()) {
-      showError("Обов'язково / Обязательно")
-    } else if (iti.isValidNumberPrecise()) {
-      const formData = new FormData(form)
-      // formData.append('name', nameInput.value)
-      // formData.append('phone', input.value)
 
-      fetch('send.php', {
-        method: 'POST',
-        body: formData,
-      })
-        .then(response => response.json())
-        // eslint-disable-next-line no-console
-        .then(data => console.log(data))
-        // eslint-disable-next-line no-console
-        .catch(error => console.error('Error:', error))
+    if (timesSubmitted < 1) {
+      if (!input.value.trim()) {
+        showError(pathname.includes('ua') ? "Обов'язково" : 'Обязательно')
+      } else if (iti.isValidNumberPrecise()) {
+        const formData = new FormData(form)
 
-      formData.forEach((value, key) => {
-        // eslint-disable-next-line no-console
-        console.log(`${key}: ${value}`)
-      })
+        formData.forEach((value, key) => {
+          // eslint-disable-next-line no-console
+          console.log(`${key}: ${value}`)
+          sendMessage(`${key}: ${value}`)
+        })
+        showSuccess(
+          pathname.includes('ua')
+            ? "Дані надіслані. Скоро ми з вами зв'яжемося."
+            : 'Данные отправлены. Скоро мы с вами свяжемся.',
+        )
+      } else {
+        const errorCode = iti.getValidationError()
+        const msg =
+          errorMap[errorCode] || pathname.includes('ua')
+            ? 'Невірний номер'
+            : 'Неправильный номер'
+        showError(msg)
+      }
+
+      if (Timer === null) {
+        Timer = setTimeout(() => {
+          if (timesSubmitted > 0) {
+            showError(' ')
+          }
+          timesSubmitted = 0
+        }, timeCounter)
+      }
+
+      timesSubmitted += 1
     } else {
-      const errorCode = iti.getValidationError()
-      const msg = errorMap[errorCode] || 'Невірний номер / Неправильный номер'
-      showError(msg)
+      showError(
+        pathname.includes('ua')
+          ? 'Ви можете надсилати дані не частіше 1 разу на хвилину!'
+          : 'Вы можете отправлять данные не чаще 1 раза в минуту!',
+      )
     }
   })
 
@@ -152,3 +192,22 @@ window.addEventListener('scroll', () => {
     bottomHeader.classList.remove('sticky')
   }
 })
+
+// SEND TO TELEGRAM
+
+const tg = {
+  token: '7527002571:AAF0uvF7QAkYBkj784rrWluIf_4dEA7iOEM',
+  chat_id: '-4512534374',
+}
+
+/**
+ * By calling this function you can send message to a specific user
+ * @param {String} the text to send
+ *
+ */
+function sendMessage(text) {
+  const url = `https://api.telegram.org/bot${tg.token}/sendMessage?chat_id=${tg.chat_id}&text=${text}`
+  const xht = new XMLHttpRequest()
+  xht.open('GET', url)
+  xht.send()
+}
