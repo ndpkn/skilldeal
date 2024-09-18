@@ -36,7 +36,7 @@
     flex-direction: column;
     gap: 20px;
     justify-content: space-between;
-    padding: 25px 30px;
+    padding: 25px 50px;
 
     background-color: $white;
     border-radius: 30px;
@@ -45,10 +45,9 @@
       font-size: 1.2rem;
       font-family: $font-main;
       line-height: 1.5rem;
-
     }
     
-    >h3 {
+    >h2 {
       margin: 0;
 
       font-size: 2rem;
@@ -56,11 +55,10 @@
     }
 
     >span {
-      font-weight: 700;
+      font-weight: 600;
       font-size: 1.5rem;
       font-family: $font-header;
     }
-
   }
 }
 
@@ -75,13 +73,23 @@
     }
 
     &-text {
-      >h3 {
-        font-size: 1.8rem;
-        line-height: 2.2rem;
+      padding: 15px 25px;
+
+      >h2 {
+        margin-top: 0;
+
+        font-size: 1.5rem;
+        line-height: 1.7rem;
       }
 
       >span {
+        font-weight: 600;
         font-size: 1.3rem;
+      }
+
+      >p {
+        font-size: 1rem;
+        line-height: 1.5rem;
       }
     }
 

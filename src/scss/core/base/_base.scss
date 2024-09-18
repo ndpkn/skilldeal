@@ -48,7 +48,7 @@ button {
   #{$headline} {
     margin: $margin 0 math.div($margin, 2);
 
-    font-weight: 700;
+    font-weight: 500;
     font-size: $size;
     font-family: $font-header;
   }

@@ -10,11 +10,11 @@
           p 
             span.truncated-text
               span.truncated-text 
-                | #{feature.description.split(" ").splice(0, 8).join(" ")}
-                if feature.description.length > 80
+                | #{feature.description.split(" ").splice(0, 22).join(" ")}
+                if feature.description.length > 115
                   |...
             span.full-text #{feature.description}
-          if feature.description.length > 80
+          if feature.description.length > 115
             a.show-more Показать полностью
 
 script.

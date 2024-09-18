@@ -130,13 +130,17 @@
 }
 
 .activeTabFaq {
-  font-weight: 700;
+  font-weight: 600;
 
   border: 2px solid $accent;
 }
 
 @media only screen and (max-width: 768px) {
   .faq {
+    &-header {
+      font-size: 1.5rem;
+    }
+
     &-container {
       flex-direction: column;
     }

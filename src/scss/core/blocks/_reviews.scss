@@ -54,9 +54,10 @@
       gap: 15px;
 
       font-size: 1rem;
-      font-family: $font-main;
+      font-family: $font-header;
+
       >p {
-        font-weight: 700;
+        font-weight: 600;
         font-size: 1.1rem;
       }
     }
@@ -138,6 +139,11 @@
 
 @media only screen and (max-width: 768px) {
   .reviews {
+    &-container {
+      >h2 {
+        font-size: 1.5rem;
+      }
+    }
     &-item {
       flex: 1 0 80%;
       width: 80%;

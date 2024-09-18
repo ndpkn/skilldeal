@@ -4,6 +4,11 @@
 
 @import "node_modules/normalize.css/normalize";
 
+@import "core/blocks/header";
+@import "core/blocks/main";
+@import "core/blocks/courses";
+
+
 @import "core/base/base";
 @import "core/base/container";
 
