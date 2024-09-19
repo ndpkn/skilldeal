@@ -27,7 +27,7 @@ forms.forEach(form => {
   const button = form.querySelector('#submit')
   const errorMsg = form.querySelector('#error-msg')
   const successMsg = form.querySelector('#success-msg')
-  // const nameInput = form.querySelector('#name')
+  const nameInput = form.querySelector('#name')
 
   const iti = intlTelInput(input, {
     initialCountry: 'ua',
@@ -110,22 +110,37 @@ forms.forEach(form => {
     e.preventDefault()
     reset()
 
+    const lastSubmitTime = localStorage.getItem('formSubmittedAt')
+    const currentTime = new Date().getTime()
+
+    if (lastSubmitTime !== null) {
+      const timeDiff = currentTime - lastSubmitTime
+      if (timeDiff < timeCounter) {
+        showError(
+          pathname.includes('ua')
+            ? 'Ви можете надсилати дані не частіше 1 разу на хвилину!'
+            : 'Вы можете отправлять данные не чаще 1 раза в минуту!',
+        )
+        return
+      }
+    }
+
     if (timesSubmitted < 1) {
       if (!input.value.trim()) {
         showError(pathname.includes('ua') ? "Обов'язково" : 'Обязательно')
       } else if (iti.isValidNumberPrecise()) {
-        const formData = new FormData(form)
-
-        formData.forEach((value, key) => {
-          // eslint-disable-next-line no-console
-          console.log(`${key}: ${value}`)
-          sendMessage(`${key}: ${value}`)
-        })
+        const formData = {
+          name: nameInput.value,
+          phone: input.value,
+        }
+        sendMessage(`${formData.name}: ${formData.phone}`)
         showSuccess(
           pathname.includes('ua')
-            ? "Дані надіслані. Скоро ми з вами зв'яжемося."
-            : 'Данные отправлены. Скоро мы с вами свяжемся.',
+            ? "Заявку надіслано. Ми зв'яжемося з вами найближчим часом."
+            : 'Заявка отправлена. Мы свяжемся с вами в ближайшее время.',
         )
+        localStorage.setItem('formSubmittedAt', currentTime)
+        timesSubmitted += 1
       } else {
         const errorCode = iti.getValidationError()
         const msg =
@@ -141,10 +156,9 @@ forms.forEach(form => {
             showError(' ')
           }
           timesSubmitted = 0
+          localStorage.setItem('formSubmittedAt', null)
         }, timeCounter)
       }
-
-      timesSubmitted += 1
     } else {
       showError(
         pathname.includes('ua')
@@ -205,7 +219,7 @@ const tg = {
  * @param {String} the text to send
  *
  */
-function sendMessage(text) {
+const sendMessage = text => {
   const url = `https://api.telegram.org/bot${tg.token}/sendMessage?chat_id=${tg.chat_id}&text=${text}`
   const xht = new XMLHttpRequest()
   xht.open('GET', url)

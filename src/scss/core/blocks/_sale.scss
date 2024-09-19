@@ -1,0 +1,54 @@
+.sale {
+  &-container {
+    position: fixed; 
+    bottom: 25px;
+    left: 50%; /* added to horizontally center the block */
+
+    display: flex;
+    align-items: center; /* added to vertically center the content */
+    justify-content: center; /* changed from space-between to center */
+    padding: 15px 25px;
+
+    font-size: 1.2rem;
+    font-family: $font-main;
+
+    background-color: $white;
+    border-radius: 30px;
+    -webkit-box-shadow: 0px 0px 20px -7px rgba(0,0,0,0.52);
+    -moz-box-shadow: 0px 0px 20px -7px rgba(0,0,0,0.52);
+    box-shadow: 0px 0px 20px -7px rgba(0,0,0,0.52);
+    transform: translateX(-50%);
+
+    &__hide {
+      display: none;
+    }
+
+    >button {
+      padding: 10px 20px;
+
+      color: $white;
+      font-weight: 600;
+
+      background-color: $accent;
+      border: none;
+      border-radius: 30px;
+    }
+
+    >p {
+      >span {
+        font-weight: 600;
+        font-family: "Roboto", sans-serif;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .sale {
+    &-container {
+      width: 90%;
+
+      font-size: 1rem;
+    }
+  }
+}

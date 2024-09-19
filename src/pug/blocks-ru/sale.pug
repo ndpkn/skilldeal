@@ -1,0 +1,15 @@
+.container
+  .sale-container
+    p 
+      |Рады приветствовать. В честь знакомства дарим скидку 
+      span 10% 
+      |на все. Скидка уже применилась автоматически
+    button#close-sale Ок
+
+script.
+  const closeSaleBtn = document.querySelector('#close-sale')
+  const saleBlock = document.querySelector('.sale-container')
+
+  closeSaleBtn.addEventListener('click', () => {
+    saleBlock.classList.add('sale-container__hide')
+  })
